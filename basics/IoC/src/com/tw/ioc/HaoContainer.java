@@ -22,25 +22,29 @@ public class HaoContainer {
 
     public Object createInstance(Class<?> clazz) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
         List<Constructor> constructors = Arrays.asList(clazz.getConstructors());
+        Optional<Constructor> constructorOptional = Optional.empty();
 
-        if (constructors.size() == 0) {
+        for (Constructor cons : constructors) {
+            if (cons.getAnnotation(Inject.class) != null) {
+                constructorOptional = Optional.of(cons);
+                break;
+            }
+        }
+
+        if (constructors.size() == 0 || !constructorOptional.isPresent()) {
             return classMap.get(clazz).newInstance();
         }
 
-        Constructor constructor = constructors.get(0);
         Inject injectAnnotation = (Inject) constructors.get(0).getAnnotation(Inject.class);
 
-        if (injectAnnotation != null) {
-            List<Class> paramTypes = Arrays.asList(constructor.getParameterTypes());
-            List<Object> objects = new ArrayList<>();
+        Constructor constructor = constructorOptional.get();
+        List<Class> paramTypes = Arrays.asList(constructor.getParameterTypes());
+        List<Object> objects = new ArrayList<>();
 
-            for (Class c: paramTypes) {
-                objects.add(this.createInstance(c));
-            }
-
-            return constructor.newInstance(objects.toArray());
-        } else {
-            return classMap.get(clazz).newInstance();
+        for (Class c : paramTypes) {
+            objects.add(this.createInstance(c));
         }
+
+        return constructor.newInstance(objects.toArray());
     }
 }
