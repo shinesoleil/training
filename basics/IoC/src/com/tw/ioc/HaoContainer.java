@@ -1,13 +1,9 @@
 package com.tw.ioc;
 
 import javax.inject.Inject;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class HaoContainer {
     Map<Class, Class> classMap;
@@ -31,11 +27,18 @@ public class HaoContainer {
             return classMap.get(clazz).newInstance();
         }
 
-        Annotation annotation = constructors.get(0).getAnnotation(Inject.class);
+        Constructor constructor = constructors.get(0);
+        Inject injectAnnotation = (Inject) constructors.get(0).getAnnotation(Inject.class);
 
-        if (annotation != null) {
-            Dependency dependency = (Dependency) this.createInstance(Dependency.class);
-            return classMap.get(clazz).getConstructor(Dependency.class).newInstance(dependency);
+        if (injectAnnotation != null) {
+            List<Class> paramTypes = Arrays.asList(constructor.getParameterTypes());
+            List<Object> objects = new ArrayList<>();
+
+            for (Class c: paramTypes) {
+                objects.add(this.createInstance(c));
+            }
+
+            return constructor.newInstance(objects.toArray());
         } else {
             return classMap.get(clazz).newInstance();
         }

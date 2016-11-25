@@ -34,4 +34,18 @@ public class DITest {
 
         assertThat(normalClass.NormalMethod(), is("DI success"));
     }
+
+    @Test
+    public void should_instantiate_registered_class_with_several_dependencies() throws InstantiationException, IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+        HaoContainer c = new HaoContainer();
+        c.registerImplementation(Dependency.class, DependencyImpl.class);
+        c.registerImplementation(SecondDependency.class, SecondDependencyImpl.class);
+        c.registerImplementation(ClassTwoDependencies.class);
+
+        ClassTwoDependencies classTwoDependencies = (ClassTwoDependencies) c.createInstance(ClassTwoDependencies.class);
+
+        assertThat(classTwoDependencies.method(), is("DI success, Second DI success"));
+    }
+
+
 }
