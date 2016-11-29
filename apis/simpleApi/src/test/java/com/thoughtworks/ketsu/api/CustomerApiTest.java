@@ -8,10 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -24,7 +21,6 @@ public class CustomerApiTest extends ApiSupport {
 
     @Test
     public void should_create_customer_success() {
-        //?????不能用any
         when(customerRepository.findById(anyLong())).thenReturn(Optional.empty());
         when(customerRepository.create(any())).thenReturn(new Customer(1, "Amy"));
         Map<String, Object> customerInfo = TestHelper.customerMap(1, "Amy");

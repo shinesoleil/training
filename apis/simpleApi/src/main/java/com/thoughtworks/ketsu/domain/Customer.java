@@ -4,7 +4,9 @@ import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Customer implements Record{
     private long id;
@@ -13,6 +15,10 @@ public class Customer implements Record{
     public Customer(long id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public Order placeOrder(Map<String, Object> orderInfo) {
+        return null;
     }
 
     @Override
@@ -27,5 +33,13 @@ public class Customer implements Record{
             put("name", name);
         }};
         return map;
+    }
+
+    public List<Order> findOrders() {
+        return null;
+    }
+
+    public Optional<Order> findOrderById(long id) {
+        return null;
     }
 }
