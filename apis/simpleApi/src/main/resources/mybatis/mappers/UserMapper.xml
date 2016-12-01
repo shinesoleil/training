@@ -12,6 +12,7 @@
         FROM users U
         WHERE U.id = #{id}
     </select>
+
     <select id="findByUserName" resultMap="records.user">
         SELECT
         <include refid="columns.user"/>

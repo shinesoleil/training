@@ -12,6 +12,9 @@ public class Customer implements Record{
     private long id;
     private String name;
 
+    public Customer() {
+    }
+
     public Customer(long id, String name) {
         this.id = id;
         this.name = name;
@@ -41,5 +44,9 @@ public class Customer implements Record{
 
     public Optional<Order> findOrderById(long id) {
         return null;
+    }
+
+    public long getId() {
+        return id;
     }
 }

@@ -16,4 +16,9 @@
         <result property="password" column="userPassword"/>
         <association property="userId" resultMap="userId"/>
     </resultMap>
+
+    <resultMap id="customer" type="com.thoughtworks.ketsu.domain.Customer">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+    </resultMap>
 </mapper>

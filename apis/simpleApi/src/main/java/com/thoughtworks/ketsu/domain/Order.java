@@ -18,4 +18,8 @@ public class Order implements Record{
     public Map<String, Object> toJson(Routes routes) {
         return null;
     }
+
+    public boolean paid() {
+        return false;
+    }
 }
