@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.api;
 
+import com.thoughtworks.ketsu.domain.Price;
 import com.thoughtworks.ketsu.domain.Product;
 import com.thoughtworks.ketsu.support.ApiSupport;
 import com.thoughtworks.ketsu.support.ApiTestRunner;
@@ -92,6 +93,81 @@ public class ProductApiTest extends ApiSupport {
         when(productRepository.findById(anyLong())).thenReturn(Optional.empty());
 
         Response response = get("/products/1");
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+    @Test
+    public void should_create_price_for_a_product_success() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.updatePrice(any())).thenReturn(new Price(1, product, 100));
+
+        Response response = post("/products/1/prices", TestHelper.priceMap(100));
+
+        assertThat(response.getStatus(), is(201));
+        assertThat(response.getLocation().toASCIIString().contains("products/1/prices/1"), is(true));
+    }
+
+    @Test
+    public void should_create_price_for_a_product_failure_with_invalid_info() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.updatePrice(any())).thenReturn(new Price(1, product, 100));
+
+        Map<String, Object> info = TestHelper.priceMap(100);
+        info.replace("amount", "");
+
+        Response response = post("/products/1/prices", info);
+
+        assertThat(response.getStatus(), is(400));
+    }
+
+    @Test
+    public void should_find_all_prices_failure_when_not_found() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.getPricesHistory()).thenReturn(new ArrayList<Price>());
+
+        Response response = get("/products/1/prices");
+
+        assertThat(response.getStatus(), is(404));
+    }
+
+    @Test
+    public void should_find_all_prices_success() {
+        List<Price> prices = new ArrayList<>();
+        prices.add(new Price(1, product, 100));
+
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.getPricesHistory()).thenReturn(prices);
+
+        Response response = get("/products/1/prices");
+
+        assertThat(response.getStatus(), is(200));
+        assertThat(response.readEntity(List.class).size(), is(1));
+    }
+
+    @Test
+    public void should_find_price_by_id_success() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.getPriceById(1)).thenReturn(Optional.of(new Price(1, product, 100)));
+
+        Response response = get("/products/1/prices/1");
+
+        assertThat(response.getStatus(), is(200));
+        assertThat(response.readEntity(Map.class).get("amount").toString(), is("100.0"));
+    }
+
+    @Test
+    public void should_find_price_by_id_failure() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1);
+        when(product.getPriceById(1)).thenReturn(Optional.empty());
+
+        Response response = get("/products/1/prices/1");
 
         assertThat(response.getStatus(), is(404));
     }

@@ -4,7 +4,9 @@ import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 public class Product implements Record{
     private int id;
@@ -19,6 +21,14 @@ public class Product implements Record{
         return id;
     }
 
+    public Price updatePrice(Map<String, Object> info) {
+        return null;
+    }
+
+    public List<Price> getPricesHistory() {
+        return null;
+    }
+
     @Override
     public Map<String, Object> toRefJson(Routes routes) {
         return toJson(routes);
@@ -31,5 +41,9 @@ public class Product implements Record{
         res.put("name", name);
         res.put("url", routes.productUrl(this));
         return res;
+    }
+
+    public Optional<Price> getPriceById(long id) {
+        return null;
     }
 }
