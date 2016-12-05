@@ -3,9 +3,7 @@ package com.thoughtworks.ketsu.support;
 import com.thoughtworks.ketsu.api.jersey.RecordListWriter;
 import com.thoughtworks.ketsu.api.jersey.RecordWriter;
 import com.thoughtworks.ketsu.api.jersey.RoutesFeature;
-import com.thoughtworks.ketsu.domain.Customer;
-import com.thoughtworks.ketsu.domain.CustomerRepository;
-import com.thoughtworks.ketsu.domain.Order;
+import com.thoughtworks.ketsu.domain.*;
 import com.thoughtworks.ketsu.util.Json;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.servlet.ServletRegistration;
@@ -59,6 +57,8 @@ public class ApiSupport {
     protected CustomerRepository customerRepository = mock(CustomerRepository.class);
     protected Customer customer = mock(Customer.class);
     protected Order order = mock(Order.class);
+    protected ProductRepository productRepository = mock(ProductRepository.class);
+    protected Product product = mock(Product.class);
 
     @Before
     public void setUp() throws Exception {
@@ -77,6 +77,8 @@ public class ApiSupport {
                                 bind(customerRepository).to(CustomerRepository.class);
                                 bind(customer).to(Customer.class);
                                 bind(order).to(Order.class);
+                                bind(productRepository).to(ProductRepository.class);
+                                bind(product).to(Product.class);
                             }
                         });
 

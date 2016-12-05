@@ -12,4 +12,9 @@
         WHERE C.id = #{id}
     </select>
 
+    <select id="find" resultMap="records.customer">
+        SELECT C.id, C.name
+        FROM customers C
+    </select>
+
 </mapper>

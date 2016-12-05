@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.api;
 
+import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.domain.Customer;
 import com.thoughtworks.ketsu.domain.CustomerRepository;
 
@@ -17,6 +18,9 @@ public class CustomersApi {
     @Context
     CustomerRepository customerRepository;
 
+    @Context
+    Routes routes;
+
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response createCustomer(Map<String, Object> info) {
@@ -28,9 +32,9 @@ public class CustomersApi {
             throw new BadRequestException("name field is needed");
         }
 
-        customerRepository.create(info);
+        Customer customer = customerRepository.create(info);
 
-        return Response.status(201).build();
+        return Response.created(routes.customerUrl(customer)).build();
     }
 
     @GET

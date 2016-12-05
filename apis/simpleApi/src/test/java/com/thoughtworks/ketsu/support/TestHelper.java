@@ -66,10 +66,17 @@ public class TestHelper {
         }};
     }
 
-    public static Map<String, Object> productMap(long id, int quantity) {
+//    public static Map<String, Object> productMap(long id, int quantity) {
+//        return new HashMap<String, Object>() {{
+//            put("id", id);
+//            put("quantity", quantity);
+//        }};
+//    }
+
+    public static Map<String, Object> productMap(long id, String name) {
         return new HashMap<String, Object>() {{
             put("id", id);
-            put("quantity", quantity);
+            put("name", name);
         }};
     }
 }

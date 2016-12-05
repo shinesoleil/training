@@ -28,6 +28,7 @@ public class CustomerApiTest extends ApiSupport {
         Response response = post("/customers", customerInfo);
 
         assertThat(response.getStatus(), is(201));
+        assertThat(response.getLocation().toASCIIString().contains("customers/1"), is(true));
     }
 
     @Test

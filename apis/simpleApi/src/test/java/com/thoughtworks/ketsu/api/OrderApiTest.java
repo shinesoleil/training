@@ -33,8 +33,6 @@ public class OrderApiTest extends ApiSupport {
 
     @Test
     public void should_place_order_success() {
-
-
         when(customer.placeOrder(any())).thenReturn(new Order());
 //        api层不需要关注内容
 //        Map<String, Object> product1Map = TestHelper.productMap(1, 10);

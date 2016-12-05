@@ -3,25 +3,24 @@ package com.thoughtworks.ketsu.domain;
 import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-public class Customer implements Record{
+public class Product implements Record{
     private long id;
     private String name;
+    private List<Price> prices;
 
-    public Customer() {
-    }
-
-    public Customer(long id, String name) {
+    public Product(long id, String name) {
         this.id = id;
         this.name = name;
+        this.prices = new ArrayList<>();
     }
 
-    public Order placeOrder(Map<String, Object> orderInfo) {
-        return null;
+    public long getId() {
+        return id;
     }
 
     @Override
@@ -35,19 +34,7 @@ public class Customer implements Record{
             put("id", id);
             put("name", name);
         }};
-        map.put("url", routes.customerUrl(this));
+        map.put("url", routes.productUrl(this));
         return map;
-    }
-
-    public List<Order> findOrders() {
-        return null;
-    }
-
-    public Optional<Order> findOrderById(long id) {
-        return null;
-    }
-
-    public long getId() {
-        return id;
     }
 }

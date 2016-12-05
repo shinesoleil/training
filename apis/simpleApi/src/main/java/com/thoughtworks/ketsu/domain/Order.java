@@ -6,6 +6,8 @@ import com.thoughtworks.ketsu.infrastructure.records.Record;
 import java.util.Map;
 
 public class Order implements Record{
+    private long id;
+
     public Order() {
     }
 
@@ -21,5 +23,9 @@ public class Order implements Record{
 
     public boolean paid() {
         return false;
+    }
+
+    public long getId() {
+        return id;
     }
 }

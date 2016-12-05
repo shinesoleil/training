@@ -26,6 +26,6 @@ public class CustomerRepositoryImpl implements CustomerRepository {
 
     @Override
     public List<Customer> find() {
-        return null;
+        return customerMapper.find();
     }
 }
