@@ -8,12 +8,10 @@ import java.util.*;
 public class Product implements Record{
     private long id;
     private String name;
-    private List<Price> prices;
 
     public Product(long id, String name) {
         this.id = id;
         this.name = name;
-        this.prices = new ArrayList<>();
     }
 
     public long getId() {
