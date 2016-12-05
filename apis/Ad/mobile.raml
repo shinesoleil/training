@@ -1,0 +1,478 @@
+#%RAML 0.8
+
+title: Mobile
+mediaType: application/json
+
+/adPlaces:
+  get:
+    description: operator find all users
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+                {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties":{
+                  "uri": {
+                    "type": "string"
+                    },
+                  "number": {
+                    "type": "string"
+                    },
+                  "registeredPlace": {
+                    "type": "string"
+                    },
+                  "balance": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                        },
+                      "callLeft": {
+                        "type": "number"
+                        },
+                      "dataLeft": {
+                        "type": "number"
+                        },
+                      "required": ["amount", "freeCallDuration", "freeData"]
+                      }
+                    },
+                  "required": ["uri", "number", "registeredPlace", "balance"]
+                  }
+                }
+      404:
+  post:
+    description: customer registers an user account
+    responses:
+      201:
+        body:
+          application/json:
+            schema: |
+                {
+                "$schema": "http://json-schema.org/draft-04/schema#",
+                "type": "object",
+                "properties":{
+                  "uri": {
+                    "type": "string"
+                    },
+                  "number": {
+                    "type": "string"
+                    },
+                  "registeredPlace": {
+                    "type": "string"
+                    },
+                  "balance": {
+                    "type": "object",
+                    "properties": {
+                      "amount": {
+                        "type": "number"
+                        },
+                      "callLeft": {
+                        "type": "number"
+                        },
+                      "dataLeft": {
+                        "type": "number"
+                        },
+                      "required": ["amount", "freeCallDuration", "freeData"]
+                      }
+                    },
+                  "required": ["uri", "number", "registeredPlace", "balance"]
+                  }
+                }
+      400:
+  /{userId}:
+    get:
+      description: customer retrieves user detail
+      responses:
+        200:
+          body:
+            application/json:
+              schema: |
+                  {
+                  "$schema": "http://json-schema.org/draft-04/schema#",
+                  "type": "object",
+                  "properties":{
+                    "uri": {
+                      "type": "string"
+                      },
+                    "number": {
+                      "type": "string"
+                      },
+                    "registeredPlace": {
+                      "type": "string"
+                      },
+                    "balance": {
+                      "type": "object",
+                      "properties": {
+                        "amount": {
+                          "type": "number"
+                          },
+                        "callLeft": {
+                          "type": "number"
+                          },
+                        "dataLeft": {
+                          "type": "number"
+                          },
+                        "required": ["amount", "freeCallDuration", "freeData"]
+                        }
+                      },
+                    "required": ["uri", "number", "registeredPlace", "balance"]
+                    }
+                  }
+        404:
+    put:
+      description: customer changes customer detail
+      responses:
+        200:
+        404:
+    delete:
+      description: customer close the account
+      responses:
+        200:
+        404:
+
+
+    /menus:
+      get:
+        description: operator find all menus/ customer find registered menu
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "name": {
+                        "type": "string"
+                        },
+                      "type": {
+                        "type": "string"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "name", "type", "price"]
+                      }
+                    }
+
+          403:
+      post:
+        description: operator create a new menus
+        responses:
+          201:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "name": {
+                        "type": "string"
+                        },
+                      "type": {
+                        "type": "string"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "name", "type", "price"]
+                      }
+                    }
+          400:
+      /{menuId}:
+        get:
+          description: operator find a menu by id
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: |
+                      {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "properties":{
+                        "uri": {
+                          "type": "string"
+                          },
+                        "name": {
+                          "type": "string"
+                          },
+                        "type": {
+                          "type": "string"
+                          },
+                        "price": {
+                          "type": "object"
+                          },
+                        "required": ["uri", "name", "type", "price"]
+                        }
+                      }
+            404:
+
+    /calls:
+      get:
+        description: customer find all calls
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "duration": {
+                        "type": "number"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "time", "duration", "price"]
+                      }
+                    }
+          403:
+      post:
+        description: customer make a phone call
+        responses:
+          201:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "duration": {
+                        "type": "number"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "time", "duration", "price"]
+                      }
+                    }
+          400:
+      /{callId}:
+        get:
+          description: customer find a call history by id
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: |
+                      {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "properties":{
+                        "uri": {
+                          "type": "string"
+                          },
+                        "time": {
+                          "type": "number"
+                          },
+                        "duration": {
+                          "type": "number"
+                          },
+                        "price": {
+                          "type": "object"
+                          },
+                        "required": ["uri", "time", "duration", "price"]
+                        }
+                      }
+            404:
+    /datas:
+      get:
+        description: customer find all data consumptions
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "volume": {
+                        "type": "number"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "time", "volume", "price"]
+                      }
+                    }
+      post:
+        description: customer consume data
+        responses:
+          201:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "volume": {
+                        "type": "number"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "price": {
+                        "type": "object"
+                        },
+                      "required": ["uri", "time", "volume", "price"]
+                      }
+                    }
+          400:
+      /{dataId}:
+        get:
+          description: customer find a data history by id
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: |
+                      {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "properties":{
+                        "uri": {
+                          "type": "string"
+                          },
+                        "volume": {
+                          "type": "number"
+                          },
+                        "time": {
+                          "type": "number"
+                          },
+                        "price": {
+                          "type": "object"
+                          },
+                        "required": ["uri", "time", "volume", "price"]
+                        }
+                      }
+            404:
+
+    /bills:
+      get:
+        description: customer find all bills
+        responses:
+          200:
+      post:
+        description: customer generate new month bill
+        responses:
+          201:
+          400:
+      /{billId}:
+        get:
+          description: customer find bill by id
+          responses:
+            200:
+            404:
+
+    /recharges:
+      get:
+        description: customer find charges
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "amount": {
+                        "type": "number"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "required": ["uri", "amount", "time"]
+                      }
+                    }
+          404:
+      post:
+        description: customer recharge balance
+        responses:
+          201:
+            body:
+              application/json:
+                schema: |
+                    {
+                    "$schema": "http://json-schema.org/draft-04/schema#",
+                    "type": "object",
+                    "properties":{
+                      "uri": {
+                        "type": "string"
+                        },
+                      "amount": {
+                        "type": "number"
+                        },
+                      "time": {
+                        "type": "number"
+                        },
+                      "required": ["uri", "amount", "time"]
+                      }
+                    }
+          400:
+      /{rechargeId}:
+        get:
+          description: customer find charge by id
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: |
+                      {
+                      "$schema": "http://json-schema.org/draft-04/schema#",
+                      "type": "object",
+                      "properties":{
+                        "uri": {
+                          "type": "string"
+                          },
+                        "amount": {
+                          "type": "number"
+                          },
+                        "time": {
+                          "type": "number"
+                          },
+                        "required": ["uri", "amount", "time"]
+                        }
+                      }
+            404:
