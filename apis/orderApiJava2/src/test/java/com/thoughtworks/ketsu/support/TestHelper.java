@@ -62,4 +62,10 @@ public class TestHelper {
             put("amount", amount);
         }};
     }
+
+    public static Map<String, Object> customerMap(String name) {
+        return new HashMap<String, Object>() {{
+            put("name", name);
+        }};
+    }
 }

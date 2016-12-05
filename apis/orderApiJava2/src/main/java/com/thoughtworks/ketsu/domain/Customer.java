@@ -4,33 +4,19 @@ import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-public class Product implements Record{
-    private int id;
+public class Customer implements Record{
+    private long id;
     private String name;
 
-    public Product(int id, String name) {
+    public Customer(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
-    }
-
-    public Price updatePrice(Map<String, Object> info) {
-        return null;
-    }
-
-    public List<Price> getPricesHistory() {
-        return null;
-    }
-
-    public Optional<Price> getPriceById(long id) {
-        return null;
     }
 
     @Override
@@ -43,7 +29,7 @@ public class Product implements Record{
         Map<String, Object> res = new HashMap();
         res.put("id", id);
         res.put("name", name);
-        res.put("url", routes.productUrl(this));
+        res.put("url", routes.customerUrl(this));
         return res;
     }
 }

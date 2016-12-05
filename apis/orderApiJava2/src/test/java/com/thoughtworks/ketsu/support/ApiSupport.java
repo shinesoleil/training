@@ -3,6 +3,8 @@ package com.thoughtworks.ketsu.support;
 import com.thoughtworks.ketsu.api.jersey.RecordListWriter;
 import com.thoughtworks.ketsu.api.jersey.RecordWriter;
 import com.thoughtworks.ketsu.api.jersey.RoutesFeature;
+import com.thoughtworks.ketsu.domain.Customer;
+import com.thoughtworks.ketsu.domain.CustomerRepository;
 import com.thoughtworks.ketsu.domain.Product;
 import com.thoughtworks.ketsu.domain.ProductRepository;
 import com.thoughtworks.ketsu.util.Json;
@@ -57,6 +59,8 @@ public class ApiSupport {
 
     protected ProductRepository productRepository = mock(ProductRepository.class);
     protected Product product = mock(Product.class);
+    protected CustomerRepository customerRepository = mock(CustomerRepository.class);
+    protected Customer customer = mock(Customer.class);
 
     @Before
     public void setUp() throws Exception {
@@ -74,6 +78,8 @@ public class ApiSupport {
                             protected void configure() {
                                 bind(productRepository).to(ProductRepository.class);
                                 bind(product).to(Product.class);
+                                bind(customerRepository).to(CustomerRepository.class);
+                                bind(customer).to(Customer.class);
                             }
                         });
 
