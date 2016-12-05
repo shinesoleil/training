@@ -3,10 +3,7 @@ package com.thoughtworks.ketsu.domain;
 import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Product implements Record{
     private long id;
@@ -36,5 +33,9 @@ public class Product implements Record{
         }};
         map.put("url", routes.productUrl(this));
         return map;
+    }
+
+    public Price createPrice(Map<String, Object> priceInfo) {
+        return null;
     }
 }

@@ -1,5 +1,6 @@
 package com.thoughtworks.ketsu.api;
 
+import com.thoughtworks.ketsu.domain.Price;
 import com.thoughtworks.ketsu.domain.Product;
 import com.thoughtworks.ketsu.support.ApiSupport;
 import com.thoughtworks.ketsu.support.ApiTestRunner;
@@ -8,15 +9,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyLong;
+import static org.mockito.Matchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(ApiTestRunner.class)
@@ -93,4 +90,32 @@ public class ProductApiTest extends ApiSupport {
 
         assertThat(response.getStatus(), is(404));
     }
+
+    @Test
+    public void should_create_new_price_success() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+        when(product.getId()).thenReturn(1L);
+        when(product.createPrice(any())).thenReturn(new Price(1, new Date(), 100));
+
+        Response response = post("/products/1/prices", TestHelper.priceMap(100));
+
+        assertThat(response.getStatus(), is(201));
+        assertThat(response.getLocation().toASCIIString().contains("products/1/prices/1"), is(true));
+    }
+
+
+    @Test
+    public void should_create_new_price_failure_with_invalid_info() {
+        when(productRepository.findById(anyLong())).thenReturn(Optional.of(product));
+
+        Map<String, Object> info = TestHelper.priceMap(0);
+        info.replace("id", "");
+        info.replace("price", "");
+
+        Response response = post("products/1/prices", info);
+
+        assertThat(response.getStatus(), is(400));
+    }
+
+    //didn't test if price added in product price list
 }

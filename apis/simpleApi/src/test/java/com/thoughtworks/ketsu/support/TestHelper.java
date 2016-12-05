@@ -79,4 +79,10 @@ public class TestHelper {
             put("name", name);
         }};
     }
+
+    public static Map<String, Object> priceMap(double price) {
+        return new HashMap<String, Object>() {{
+            put("price", price);
+        }};
+    }
 }
