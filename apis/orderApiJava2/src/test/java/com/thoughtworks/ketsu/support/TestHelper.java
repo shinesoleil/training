@@ -5,7 +5,9 @@ import com.thoughtworks.ketsu.domain.user.UserId;
 import com.thoughtworks.ketsu.domain.user.UserRepository;
 import com.thoughtworks.ketsu.domain.user.UserRole;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TestHelper {
@@ -66,6 +68,28 @@ public class TestHelper {
     public static Map<String, Object> customerMap(String name) {
         return new HashMap<String, Object>() {{
             put("name", name);
+        }};
+    }
+
+    public static Map<String, Object> orderItemMap(String name, int quantity) {
+        return new HashMap<String, Object>() {{
+            put("product_name", name);
+            put("quantity", quantity);
+        }};
+    }
+
+    public static Map<String, Object> orderMap() {
+        List<Map<String, Object>> orderItems = new ArrayList<>();
+        orderItems.add(orderItemMap("firstProduct", 3));
+
+        return new HashMap<String, Object>() {{
+            put("order_items", orderItems);
+        }};
+    }
+
+    public static Map<String, Object> paymentMap(double amount) {
+        return new HashMap<String, Object>() {{
+            put("amount", amount);
         }};
     }
 }

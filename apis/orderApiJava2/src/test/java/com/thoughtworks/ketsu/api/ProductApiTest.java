@@ -158,7 +158,7 @@ public class ProductApiTest extends ApiSupport {
         Response response = get("/products/1/prices/1");
 
         assertThat(response.getStatus(), is(200));
-        assertThat(response.readEntity(Map.class).get("amount").toString(), is("100.0"));
+        assertThat(response.readEntity(Map.class).get("amount"), is(100D));
     }
 
     @Test

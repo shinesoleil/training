@@ -4,32 +4,31 @@ import com.thoughtworks.ketsu.api.jersey.Routes;
 import com.thoughtworks.ketsu.infrastructure.records.Record;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class Customer implements Record{
+public class Order implements Record{
     private long id;
-    private String name;
+    private Customer customer;
 
-    public Customer(long id, String name) {
+    public Order(long id, Customer customer) {
         this.id = id;
-        this.name = name;
+        this.customer = customer;
     }
 
     public long getId() {
         return id;
     }
 
-    public Order placeOrder(Map<String, Object> info) {
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public Payment paid(Map<String, Object> info) {
         return null;
     }
 
-    public List<Order> findOrders() {
-        return null;
-    }
-
-    public Optional<Order> findOrderById(long id) {
+    public Optional<Payment> findPayment() {
         return null;
     }
 
@@ -40,10 +39,10 @@ public class Customer implements Record{
 
     @Override
     public Map<String, Object> toJson(Routes routes) {
-        Map<String, Object> res = new HashMap();
+        Map<String, Object> res = new HashMap<>();
         res.put("id", id);
-        res.put("name", name);
-        res.put("url", routes.customerUrl(this));
+        res.put("customer_id", customer.getId());
+        res.put("url", routes.orderUrl(customer, this));
         return res;
     }
 }
