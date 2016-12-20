@@ -2,7 +2,7 @@ class PricesController < ApplicationController
   protect_from_forgery
 
   def index
-    @prices = Price.where(product_id: params[:product_id])
+    @prices = Price.find_of_product(params[:product_id])
 
     if @prices.size != 0
       render json: @prices, :status => 200
@@ -12,7 +12,7 @@ class PricesController < ApplicationController
   end
 
   def show
-    @price = Price.where(product_id: params[:product_id]).find_by(id: params[:id])
+    @price = Price.find_of_product(params[:product_id]).find_by(id: params[:id])
 
     if @price
       render json: @price, :status => 200
