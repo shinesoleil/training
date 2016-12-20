@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :order do
-    customer nil
+    customer
     total_price "9.99"
   end
 end

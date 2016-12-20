@@ -35,3 +35,4 @@ Things you may want to cover:
 7. controller product 20 min, 25 min
 8. controller price 20 min, 43 min (push product_id in params)
 9. controller customer 15 min, 13 min 
+10. controller order & order_item 25 min

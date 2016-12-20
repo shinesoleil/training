@@ -1,6 +1,4 @@
 class PricesController < ApplicationController
-  protect_from_forgery
-
   def index
     @prices = Price.find_of_product(params[:product_id])
 
