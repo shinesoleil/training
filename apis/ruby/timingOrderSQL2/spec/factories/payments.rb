@@ -1,6 +1,10 @@
 FactoryGirl.define do
   factory :payment do
-    order nil
-    amount "9.99"
+    order
+    amount 9.99
+
+    trait :without_amount do
+      amount nil
+    end
   end
 end

@@ -35,3 +35,5 @@ Things you may want to cover:
 6. order index 6 min, 11 min
 7. order show 6 min, 5 min
 8. order create 10 min, 29 min  (nested data order and order_item)
+9. payment index 10 min, 7 min
+10. payment create 10 min, 10 min

@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   end
 
   resources :customers do
-    resources :orders
+    resources :orders do
+      resources :payment
+    end
   end
 end
