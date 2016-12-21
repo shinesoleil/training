@@ -1,0 +1,47 @@
+CREATE TABLE products (
+id BIGINT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(255) NOT NULL ,
+description VARCHAR(255) NOT NULL ,
+price DOUBLE NOT NULL
+);
+
+CREATE TABLE users (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE orders (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  user_id BIGINT NOT NULL ,
+  name VARCHAR(255) NOT NULL ,
+  address VARCHAR(255) NOT NULL ,
+  phone VARCHAR(255) NOT NULL ,
+  time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ,
+
+  FOREIGN KEY (user_id)
+    REFERENCES users(id)
+);
+
+CREATE TABLE order_items (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  order_id BIGINT NOT NULL ,
+  product_id BIGINT NOT NULL ,
+  quantity INT NOT NULL ,
+  amount DOUBLE NOT NULL ,
+
+  FOREIGN KEY (order_id)
+    REFERENCES orders(id),
+
+  FOREIGN KEY (product_id)
+    REFERENCES products(id)
+);
+
+CREATE TABLE payments (
+  order_id BIGINT PRIMARY KEY ,
+  pay_type VARCHAR(255) NOT NULL ,
+  pay_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  amount DOUBLE NOT NULL ,
+
+  FOREIGN KEY payments(order_id)
+    REFERENCES orders(id)
+)
