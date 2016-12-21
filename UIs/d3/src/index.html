@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p>Hello World1</p>
+<p>Hello World2</p>
+
+<script src="../lib/d3.js"></script>
+<script>
+    var width = 300;
+    var height = 300;
+
+    var dataset = [1.2, 2.3, 0.9, 1.5, 2];
+
+    var svg = d3.select("body")
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+    var rectHeight = 25;
+
+    var linear = d3.scaleLinear()
+            .domain([0, d3.max(dataset)])
+            .range([0, 250]);
+
+    var axis = d3.svg.axis()
+            .scale(linear)      //指定比例尺
+            .orient("bottom")   //指定刻度的方向
+            .ticks(7);          //指定刻度的数量
+
+    svg.selectAll("rect")
+            .data(dataset)
+            .enter()
+            .append("rect")
+            .attr("x", 40)
+            .attr("y", function(d, i) {
+                return i * 40;
+            })
+            .attr("height", 20)
+            .attr("width", function(d, i) {
+                return linear(d);
+            })
+            .attr("fill", "red");
+
+
+</script>
+</body>
+</html>
