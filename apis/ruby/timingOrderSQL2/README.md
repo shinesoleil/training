@@ -28,4 +28,6 @@ Things you may want to cover:
 1. modeling and validating 10 min, 7 min (model tests necessary ???)  
 #### controller
 
-2. product controller 15 min, 17 min
+2. product  15 min, 17 min
+3. price index and show 10 min, 15 min (didn't realize difference between json, hash in test)  
+4. price create 6 min, 8 min 
