@@ -1,0 +1,13 @@
+ul {
+    list-style-type: none;
+}
+
+ul .paper {
+    height: 200px;
+    width: 450px;
+    border: solid 1px gray;
+}
+
+textarea.form-control{
+    height: 150px;
+}

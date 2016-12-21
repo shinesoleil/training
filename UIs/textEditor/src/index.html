@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Editor</title>
+    <link rel="stylesheet" href="../lib/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../lib/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+
+<div class="container">
+    <input class="btn btn-info" type="button" id="edit" value="edit">
+    <input class="btn btn-info" type="button" id="view" value="view">
+
+    <br/>
+
+    <form>
+        <ul>
+            <li>
+                <ul class="paper">
+                    <li class="title" data-content="title1"></li>
+                    <li class="text" data-content="<b>text1</b>"></li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <ul class="paper">
+                    <li class="title" data-content="title2-1"></li>
+                    <li class="text" data-content="text2-1"></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="paper">
+                    <li class="title" data-content="title2-2"></li>
+                    <li class="text" data-content="text2-2"></li>
+                </ul>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <ul class="paper">
+                    <li class="title" data-content="title3-1"></li>
+                    <li class="text" data-content="text3-1"></li>
+                </ul>
+            </li>
+            <li>
+                <ul class="paper">
+                    <li class="title" data-content="title3-2"></li>
+                    <li class="text" data-content="text3-2"></li>
+                </ul>
+            </li>
+        </ul>
+    </form>
+</div>
+
+<script src="../lib/jquery-3.1.1.js"></script>
+<script src="../lib/bootstrap.min.js"></script>
+<script src="./js/index.js"></script>
+</body>
+</html>
