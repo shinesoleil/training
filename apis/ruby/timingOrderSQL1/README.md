@@ -37,3 +37,5 @@ Things you may want to cover:
 9. controller customer 15 min, 13 min 
 10. controller order & order_item 25 min,  50 min  (nested structure)
 11. controller payment 20 min, 18 min
+
+total 167 min
