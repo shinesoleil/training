@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :price do
     product
-    amount "9.99"
+    amount 9.99
 
     trait :without_amount do
       amount nil

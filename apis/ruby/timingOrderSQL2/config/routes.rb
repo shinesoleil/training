@@ -4,5 +4,7 @@ Rails.application.routes.draw do
     resources :prices
   end
 
-  resources :customers
+  resources :customers do
+    resources :orders
+  end
 end

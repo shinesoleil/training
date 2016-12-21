@@ -48,7 +48,7 @@ RSpec.describe PricesController, type: :controller do
 
     expect(response.status).to eq(201)
     expect(response.get_header("Location")).to match(/products\/\d\/prices\/\d/)
-    expect(@new_price_json["amount"]).to eq(@price[:amount])
+    expect(@new_price_json["amount"]).to eq(@price[:amount].to_s)
   end
 
   it 'should create price failure when product not found' do

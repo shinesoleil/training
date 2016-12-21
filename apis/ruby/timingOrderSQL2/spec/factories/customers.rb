@@ -5,6 +5,6 @@ FactoryGirl.define do
 
     trait :without_name do
       name nil
-    end
+      end
   end
 end
