@@ -1,5 +1,5 @@
 class Payment < ApplicationRecord
   belongs_to :order
 
-  validate :amount, presence: true
+  validates :amount, presence: true
 end

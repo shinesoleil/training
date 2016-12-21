@@ -1,4 +1,8 @@
 class Product < ApplicationRecord
   has_many :prices
-  validate :name, presence: true
+  validates :name, presence: true
+
+  def route_url
+    "products/#{id}"
+  end
 end

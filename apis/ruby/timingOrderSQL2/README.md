@@ -25,4 +25,7 @@ Things you may want to cover:
 
 ## tasks
 
-1. modeling and validating 10 min, 7 min (model tests necessary ???)
+1. modeling and validating 10 min, 7 min (model tests necessary ???)  
+#### controller
+
+2. product controller 15 min, 17 min

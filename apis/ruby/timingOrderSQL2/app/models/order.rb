@@ -3,5 +3,5 @@ class Order < ApplicationRecord
   has_many :order_items
   has_one :payment
 
-  validate :total_price, presence: true
+  validates :total_price, presence: true
 end
