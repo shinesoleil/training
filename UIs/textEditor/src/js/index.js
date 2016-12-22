@@ -35,6 +35,17 @@ function toEdit() {
     });
 }
 
+function addField() {
+    var model = "<ul class = 'row'><li class='col-xs-4'> " +
+        "<ul class='paper'> " +
+        "<li class='title' data-content='please add title'></li> " +
+        "<li class='text' data-content='<b>please add text</b>'></li> " +
+        "</ul> " +
+        "</li></ul>";
+
+    $("form.text-form").append(model);
+    toView();
+}
 
 $("#edit").click(function () {
     toEdit();
@@ -44,6 +55,13 @@ $("#view").click(function () {
     toView();
 });
 
+$("#add").click(function () {
+    addField();
+});
+
 $(document).ready(function () {
     toEdit();
+
+
+
 });

@@ -10,42 +10,44 @@
 <body>
 
 <div class="container">
-    <input class="btn btn-info" type="button" id="edit" value="edit">
-    <input class="btn btn-info" type="button" id="view" value="view">
-
+    <div id="header" class="">
+        <input class="btn btn-info" type="button" id="edit" value="edit">
+        <input class="btn btn-info" type="button" id="view" value="view">
+        <input class="btn btn-info" type="button" id="add" value="add">
+    </div>
     <br/>
 
-    <form>
-        <ul>
-            <li>
+    <form class="text-form">
+        <ul class="row">
+            <li class="col-xs-4">
                 <ul class="paper">
                     <li class="title" data-content="title1"></li>
                     <li class="text" data-content="<b>text1</b>"></li>
                 </ul>
             </li>
         </ul>
-        <ul>
-            <li>
+        <ul class="row">
+            <li class="col-xs-4">
                 <ul class="paper">
                     <li class="title" data-content="title2-1"></li>
                     <li class="text" data-content="text2-1"></li>
                 </ul>
             </li>
-            <li>
+            <li class="col-xs-offset-2 col-xs-4">
                 <ul class="paper">
                     <li class="title" data-content="title2-2"></li>
                     <li class="text" data-content="text2-2"></li>
                 </ul>
             </li>
         </ul>
-        <ul>
-            <li>
+        <ul class="row">
+            <li class="col-xs-4">
                 <ul class="paper">
                     <li class="title" data-content="title3-1"></li>
                     <li class="text" data-content="text3-1"></li>
                 </ul>
             </li>
-            <li>
+            <li class="col-xs-offset-2 col-xs-4">
                 <ul class="paper">
                     <li class="title" data-content="title3-2"></li>
                     <li class="text" data-content="text3-2"></li>
